@@ -18,16 +18,10 @@ public class TCPClient {
         inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
 
+        ClientThread CT1 = new ClientThread(inFromServer);
 
-        /*
-        ArrayList<Player> players = new ArrayList<>();
-        String[] test = playersString.split(":");
-        System.out.println(test[0]);
 
-        System.out.println(playersString + "This is playerString");
-        System.out.println(test[0] + test[1] + test[2] + test[3] + "");
 
- */
 
       //  Player newPlayer = new Player(test[0],new pair(),test[2]);
         System.out.println("Indtast spillernavn");
@@ -35,7 +29,17 @@ public class TCPClient {
         String navn = inFromUser.readLine();
         outToServer.writeBytes(navn + '\n');
         modifiedSentence = inFromServer.readLine();
-            GameLogic.makePlayers(navn);
+        GameLogic.makePlayers(navn);
+
+        CT1.start();
+
+        /*
+        ArrayList<Player> players = new ArrayList<>();
+        String[] test = CT1.toString().split(":");
+        test.toString().split(",");
+        System.out.println(test[0]);
+        System.out.println(test[0] + test[1] + test[2] + test[3] + "");
+        */
 
         if (modifiedSentence.equals("OK")) {
             System.out.println("Server accepterede, start med at chatte");

@@ -31,7 +31,7 @@ public class ServerThread extends Thread{
 
 				String playersString = "";
 				for (Player p : GameLogic.players) {
-					playersString += p.direction + "," + p.location + "," + p.name + "," + p.point;
+					playersString += p.direction + "," + p.getXpos() + "," + p.getYpos() + "," + p.name + "," + p.point;
 					playersString += ":";
 				}
 				System.out.println(playersString);
@@ -40,7 +40,6 @@ public class ServerThread extends Thread{
 		
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
-		// do the work here
+		}
 	}
 }
